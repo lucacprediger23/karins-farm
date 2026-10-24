@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Karin’s Farm · Mafia… for kids</title>
+<meta name="description" content="Karin's Farm is a Mafia-style card game for kids and families, born on a rainy day at summer camp in the forest of Băneasa, Bucharest. Follow the story, meet the characters and join the waitlist.">
+<meta name="theme-color" content="#f3ead6">
+<link rel="canonical" href="https://karins-farm.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Karin’s Farm · Mafia… for kids">
+<meta property="og:description" content="Karin's Farm is a Mafia-style card game for kids and families, born on a rainy day at summer camp in the forest of Băneasa, Bucharest. Follow the story, meet the characters and join the waitlist.">
+<meta property="og:url" content="https://karins-farm.vercel.app/">
+<meta property="og:image" content="https://karins-farm.vercel.app/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/art/favicon.png">
+<link rel="preload" href="/fonts/anton.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skiplink" href="#characters" data-go="characters">Skip to the game</a>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#story" data-go="story" aria-label="Karin's Farm, back to the start of the story"><img src="/img/farm/logo.webp" alt="" width="1000" height="658"></a>
+  <nav class="nav" aria-label="Main">
+    <a href="#story" data-go="story" class="on">Story</a>
+    <a href="#characters" data-go="characters">The game</a>
+    <a href="#join" data-go="join">Waitlist</a>
+  </nav>
+  <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Turn sound on"><i></i><i></i><i></i><i></i></button>
+</header>
+
+<!-- the cinematic story: one canvas, scrolled like a film -->
+<div class="stage" id="stage">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="title" id="title" aria-hidden="true">
+    <img class="t-logo" src="/img/farm/logo.webp" width="1000" height="658" alt="">
+    <p class="t-tag">Mafia… for kids</p>
+  </div>
+  <div class="cap" id="cap" aria-hidden="true"><span class="cap-k"></span><span class="cap-t"></span></div>
+  <p class="big" id="big" aria-hidden="true"></p>
+  <div class="letter" id="letter" role="note" aria-label="The Hobbit’s letter" aria-hidden="true">
+    <p>Dear children,</p>
+    <p>Someone is causing trouble on the farm. Look after the animals, and watch each other closely.</p>
+    <p>Who can you trust?</p>
+    <p class="sig">— H.</p>
+  </div>
+  <button class="hold" id="hold" type="button" tabindex="-1"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="r0" cx="50" cy="50" r="46"/><circle class="r1" cx="50" cy="50" r="46"/></svg><span id="holdLabel">Hold</span></button>
+  <div class="end" id="end">
+    <a class="hud-btn" href="#characters" data-go="characters">Meet the characters</a>
+    <a class="hud-btn ghost" href="#join" data-go="join">Join the waitlist</a>
+  </div>
+  <div class="hint" id="hint" aria-hidden="true"><span>Scroll</span><i></i></div>
+  <a class="skip" href="#characters" data-go="characters" id="skip">Skip the story ⟫</a>
+  <div class="prog" id="prog" aria-hidden="true"><i></i></div>
+  <div class="loader" id="loader" aria-hidden="true"><span id="loadPct">0</span></div>
+</div>
+
+<main>
+<!-- The story as plain text and pictures: what screen readers read, and what shows without the animated version -->
+<section class="flat" id="story" aria-label="The story of Karin's Farm">
+  <article data-img="forest" data-bg="#f3ead6" data-kind="title">
+    <img src="/img/s/forest.webp" width="1280" height="1280" alt="An illustrated path into an oak forest at golden hour, with a log cabin by a lake" loading="lazy">
+    <div><h1>Karin’s Farm</h1><p>Mafia… for kids. A card game born on a rainy day at summer camp.</p></div>
+  </article>
+  <article data-img="camp" data-insets="camp-feet" data-world="1" data-bg="#f6e3b8" data-tilt="-3" data-cap="bl">
+    <img src="/img/s/camp.webp" width="1280" height="1280" alt="Children running and playing tag between tall trees in a sunny forest" loading="lazy">
+    <div><p class="k">01 · Summer camp</p><p class="t">Every summer, the forest of Băneasa fills with kids. This is Karin’s Summer Camp, in Bucharest.</p></div>
+  </article>
+  <article data-img="rain" data-video="img/v/rain" data-insets="rain-boots" data-bg="#33445e" data-tilt="3" data-cap="tr" data-rain="1">
+    <img src="/img/s/rain.webp" width="1280" height="1280" alt="Children in bright raincoats running through a storm toward a cabin" loading="lazy">
+    <div><p class="k">02 · The rain</p><p class="t">Then it started to pour. Every game we had planned was washed out.</p></div>
+  </article>
+  <article data-img="circle" data-bg="#3d5068" data-tilt="-2" data-cap="br" data-rain=".55">
+    <img src="/img/s/circle.webp" width="1280" height="1280" alt="Seen from above, twelve children sitting in a circle on a wooden floor" loading="lazy">
+    <div><p class="k">03 · Shelter</p><p class="t">We ran for cover and sat down in a circle.</p></div>
+  </article>
+  <article data-img="eyes" data-bg="#f4c650" data-tilt="2" data-cap="tl" data-big="Mafia?<br>For kids?" data-size=".84">
+    <img src="/img/s/eyes.webp" width="1280" height="1280" alt="Close-up of a child's wide, curious green eyes" loading="lazy">
+    <div><p class="k">04 · The question</p><p class="t">The kids wanted to play Mafia. But Mafia is a game for grown-ups. How could it work for them?</p></div>
+  </article>
+  <article data-img="idea" data-insets="idea-notebook" data-bg="#3a4c63" data-tilt="-3" data-cap="bl" data-rain=".35" data-hold="think" data-hold-label="Hold to think" data-done="It clicked.">
+    <img src="/img/s/idea.webp" width="1280" height="1280" alt="A young camp leader sits under the shelter roof, thinking, with a light bulb above his head" loading="lazy">
+    <div><p class="k">05 · The idea</p><p class="t">Build the game from the things the kids already know and love.</p></div>
+  </article>
+  <article data-img="yard" data-photo="img/photos/yard.jpg" data-photo-label="Our yard" data-photo-pos="bl" data-bg="#d4e6a4" data-tilt="3" data-cap="tr">
+    <img src="/img/s/yard.webp" width="1280" height="1280" alt="Hens, a rooster, a duck and rabbits in a farm yard in the forest" loading="lazy">
+    <div><p class="k">06 · The yard</p><p class="t">The animals from our yard. The kids feed them every day.</p><figure class="real"><img src="/img/photos/yard.jpg" width="900" height="675" alt="Photo: children feeding the chickens by the coop in the camp yard" loading="lazy"><figcaption>Real photo · Our yard</figcaption></figure></div>
+  </article>
+  <article data-img="night" data-insets="night-eyes" data-world="1" data-bg="#121a30" data-tilt="0" data-cap="tl" data-hold="lamp" data-hold-label="Hold &amp; move" data-done="Got you!">
+    <img src="/img/s/night.webp" width="1280" height="1280" alt="At night, a fox sneaks across the yard toward the chicken coop" loading="lazy">
+    <div><p class="k">07 · The fox</p><p class="t">One night, the fox sneaked into our yard. Can you find him?</p></div>
+  </article>
+  <article data-img="duck" data-wind="1" data-bg="#f6d6a0" data-tilt="-4" data-cap="br" data-size=".7">
+    <img src="/img/s/duck.webp" width="1280" height="1280" alt="A proud white duck wearing a black eye patch" loading="lazy">
+    <div><p class="k">08 · The survivor</p><p class="t">He came back five times. After the last raid, only the Duck was left. Hence the eye patch.</p></div>
+  </article>
+  <article data-img="blu" data-insets="blu-nose,blu-paws" data-world="1" data-photo="img/photos/blu.jpg" data-photo-label="The real Blu" data-photo-pos="br" data-bg="#f7b46c" data-tilt="3" data-cap="tl">
+    <img src="/img/s/blu.webp" width="1280" height="1280" alt="Blu, a rough collie, follows fox paw prints along a forest path" loading="lazy">
+    <div><p class="k">09 · Blu</p><p class="t">Blu has been at every camp for five years. The kids say she was the Hobbit’s dog, 500 years ago.</p><figure class="real"><img src="/img/photos/blu.jpg" width="600" height="900" alt="Photo: Blu, a rough collie, sitting in front of autumn decorations" loading="lazy"><figcaption>Real photo · The real Blu</figcaption></figure></div>
+  </article>
+  <article data-img="hhouse" data-world="1" data-photo="img/photos/hhouse.jpg" data-photo-label="The real Hobbit house" data-photo-pos="tr" data-bg="#8ccbc9" data-tilt="-2" data-cap="tl" data-hold="letter" data-hold-label="Hold to open">
+    <img src="/img/s/hhouse.webp" width="1280" height="1280" alt="A hobbit house carved from tree roots, with a round door, between big trees" loading="lazy">
+    <div><p class="k">10 · The Hobbit</p><p class="t">He once protected our forest, and his house is still in the yard. Nobody has ever seen his face. He only writes the children letters.</p><figure class="real"><img src="/img/photos/hhouse.jpg" width="900" height="750" alt="Photo: the carved wooden Hobbit house in the camp yard" loading="lazy"><figcaption>Real photo · The real Hobbit house</figcaption></figure></div>
+  </article>
+  <article data-img="karin" data-insets="karin-face" data-bg="#f7bcd9" data-tilt="3" data-cap="tr">
+    <img src="/img/s/karin.webp" width="1280" height="1280" alt="Grandma Karin tells a story by the fireplace to children sitting on a rug" loading="lazy">
+    <div><p class="k">11 · Karin</p><p class="t">Grandma Karin tells the story. The academy carries her name. In the game, she is the Narrator.</p></div>
+  </article>
+  <article data-img="play" data-insets="play-cards" data-bg="#ffd56e" data-tilt="-3" data-cap="bl">
+    <img src="/img/s/play.webp" width="1280" height="1280" alt="Children laughing and pointing at each other while playing cards under the shelter" loading="lazy">
+    <div><p class="k">12 · After the rain</p><p class="t">Nobody wanted to stop. About 100 kids have played it since.</p></div>
+  </article>
+  <article data-img="box" data-bg="#fe7620" data-kind="box" data-cap="tl">
+    <img src="/img/game/box.webp" width="900" height="1223" alt="The Karin's Farm box" loading="lazy">
+    <div><p class="k">13 · Now</p><p class="t">Now it’s getting its own box.</p></div>
+  </article>
+</section>
+
+<!-- the game: after the story, a normal page -->
+<section class="game" id="game" aria-label="The game">
+
+  <div class="chars" id="characters" aria-labelledby="ch-h">
+    <h2 class="sr-only" id="ch-h">The characters</h2>
+    <p class="ch-kicker">The characters</p>
+    <div class="ch-stage">
+      <p class="ch-name" id="chName" aria-live="polite"></p>
+      <figure class="ch-card" id="chCard"><img id="chImg" src="/img/cards/fox.webp" width="723" height="1038" alt="Fox card"></figure>
+      <button class="ch-side prev" id="chPrev" type="button"><small>Previous</small><b></b></button>
+      <button class="ch-side next" id="chNext" type="button"><small>Next</small><b></b></button>
+    </div>
+    <div class="ch-meta">
+      <span class="ch-team" id="chTeam"></span>
+      <p class="ch-info" id="chInfo"></p>
+      <span class="ch-count" id="chCount"></span>
+    </div>
+  </div>
+
+  <div class="facts" aria-labelledby="game-h">
+    <figure class="box-shot" id="boxShot"><img src="/img/game/box.webp" width="900" height="1223" alt="The Karin's Farm box: Blu, a panicking chicken and the fox under the words Mafia… for kids" loading="lazy"></figure>
+    <div class="f-copy">
+      <p class="kicker">The game</p>
+      <h2 id="game-h">Who’s causing trouble on the farm?</h2>
+      <p class="lead">A secret-role card game for kids and families. At night, the Wild Animals cause trouble. In the morning, the farm finds out who.</p>
+      <dl class="stats">
+        <div><dt>Players</dt><dd>6–22</dd></div>
+        <div><dt>Minutes</dt><dd>30</dd></div>
+        <div><dt>Ages</dt><dd>6+</dd></div>
+      </dl>
+      <ul class="contents">
+        <li><b>22</b> character cards</li>
+        <li><b>2</b> comic pages</li>
+        <li><b>1</b> illustrated rulebook</li>
+        <li><b>1</b> Karin’s Secret Cookbook</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="how" aria-labelledby="how-h">
+    <p class="kicker">How to play</p>
+    <h2 id="how-h">Night. Morning. Vote.</h2>
+    <ol class="steps">
+      <li><img src="/img/cards/back-tracks.webp" width="723" height="1038" alt="" loading="lazy"><b>Get a card</b><span>Keep it secret. Karin, the Narrator, runs the game.</span></li>
+      <li><img src="/img/cards/fox.webp" width="723" height="1038" alt="" loading="lazy"><b>Night falls</b><span>Eyes closed. The Wild Animals choose who to cause trouble for.</span></li>
+      <li><img src="/img/cards/blu.webp" width="723" height="1038" alt="" loading="lazy"><b>Morning comes</b><span>Karin tells what happened. Everyone talks and suspects.</span></li>
+      <li><img src="/img/cards/donkey.webp" width="723" height="1038" alt="" loading="lazy"><b>Vote</b><span>The player with the most votes leaves the game. Repeat until the Wild Animals are found.</span></li>
+    </ol>
+  </div>
+
+  <div class="join" id="join" aria-labelledby="join-h">
+    <div class="burrow" aria-hidden="true">
+      <img class="b-room" src="/img/world/burrow.webp" width="2000" height="1123" alt="" loading="lazy">
+      <img class="b-rabbit" src="/img/world/rabbit.webp" width="700" height="700" alt="" loading="lazy">
+    </div>
+    <div class="j-copy">
+      <p class="kicker">Waitlist</p>
+      <h2 id="join-h">Be first on the farm</h2>
+      <p class="lead">Karin’s Farm isn’t on sale yet. Leave your email and we’ll tell you when it is. Nothing else.</p>
+      <form class="signup" id="signup" novalidate>
+        <label class="sr-only" for="email">Email address</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="formMsg">
+        <button class="hud-btn" type="submit">Join the waitlist</button>
+        <div class="hp" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <label class="consent"><input type="checkbox" name="consent" id="consent" required> <span>I’m 16 or older and I agree that Karin’s Farm may email me when the game is available. I can unsubscribe at any time. Read the <a href="/privacy">privacy policy</a>.</span></label>
+      </form>
+      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="faq" id="faq" aria-labelledby="faq-h">
+    <p class="kicker">Questions</p>
+    <h2 id="faq-h">Good to know</h2>
+    <div class="qa">
+      <details><summary>What is Karin’s Farm?</summary><p>A secret-role card game for kids and families, in the spirit of Mafia. Some players are secretly Wild Animals causing trouble at night; everyone else talks, suspects and votes to find them in the morning. It was born at Karin’s Summer Camp, in the forest of Băneasa, Bucharest.</p></details>
+      <details><summary>Who is it for?</summary><p>Children aged 6 and up, playing with friends or family. A game takes about 30 minutes, for 6 to 22 players.</p></details>
+      <details><summary>Do I need to know Mafia?</summary><p>No. The illustrated rulebook explains everything, and one player, Karin the Narrator, guides the game.</p></details>
+      <details><summary>Can I buy it now?</summary><p>Not yet. Karin’s Farm isn’t on sale. Join the waitlist and we’ll email you when it is available.</p></details>
+      <details><summary>When will it be available, and how much will it cost?</summary><p>We haven’t announced a date or a price yet. People on the waitlist will hear first.</p></details>
+      <details><summary>What do you do with my email?</summary><p>We use it only to tell you when Karin’s Farm is available. We don’t sell it or share it for marketing. You can unsubscribe or ask us to delete it at any time by writing to <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>. Details are in our <a href="/privacy">privacy policy</a>.</p></details>
+      <details><summary>Does this website use cookies or tracking?</summary><p>No. There are no advertising or analytics cookies and no trackers. See the <a href="/cookies">cookie policy</a>.</p></details>
+      <details><summary>Who is behind Karin’s Farm?</summary><p>Karin’s Farm was created at Karin’s Kids Academy and Karin’s Summer Camp in Bucharest. The website is run by [YOUR FULL NAME], Bucharest, Romania. Contact: <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>.</p></details>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <img class="foot-logo" src="/img/farm/logo.webp" alt="Karin's Farm" width="1000" height="658" loading="lazy">
+    <p>Born at Karin’s Kids Academy and Karin’s Summer Camp, in the forest of Băneasa, Bucharest.</p>
+    <nav class="legal" aria-label="Legal"><a href="/privacy">Privacy policy</a><a href="/terms">Terms of use</a><a href="/cookies">Cookie policy</a><a href="mailto:lucacprediger@gmail.com">Contact</a></nav>
+    <p class="small">Website run by [YOUR FULL NAME], Bucharest, Romania · lucacprediger@gmail.com</p>
+    <p class="small">© 2026 Karin’s Farm</p>
+  </footer>
+</section>
+</main>
+
+<script src="/app.js"></script>
+
+</body>
+</html>
