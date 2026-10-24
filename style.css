@@ -235,3 +235,6 @@ html.gl .flat { position: absolute !important; width: 1px; height: 1px; overflow
 .doc ul { margin: 10px 0 0; padding-left: 22px; }
 .doc li + li { margin-top: 6px; }
 .doc a { color: #8a3608; text-underline-offset: 3px; }
+.doc-links { display: flex; gap: 8px; }
+.doc .lang-note { margin-top: 36px; font-size: 15px; color: #5e5043; }
+.legal.ro { margin-top: 0; font-size: 13px; }
