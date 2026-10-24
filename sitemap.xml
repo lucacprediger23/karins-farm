@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://karins-farm.vercel.app/</loc></url>
-  <url><loc>https://karins-farm.vercel.app/privacy</loc></url>
-  <url><loc>https://karins-farm.vercel.app/terms</loc></url>
-  <url><loc>https://karins-farm.vercel.app/cookies</loc></url>
-  <url><loc>https://karins-farm.vercel.app/privacy-ro</loc></url>
-  <url><loc>https://karins-farm.vercel.app/terms-ro</loc></url>
-  <url><loc>https://karins-farm.vercel.app/cookies-ro</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/privacy</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/terms</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/cookies</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/privacy-ro</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/terms-ro</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/cookies-ro</loc></url>
 </urlset>
