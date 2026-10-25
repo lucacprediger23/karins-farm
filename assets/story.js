@@ -1,4 +1,4 @@
-/* Karin's Farm — the story as a film.
+/* Karin's Farm — the story as a film (the /story page).
    One WebGL canvas: scrolling moves a camera through illustrated panels; panels dissolve in an
    ink wipe; a few moments wait for the reader to press and hold. Without WebGL (or with reduced
    motion) the same story reads as a plain illustrated page. */
@@ -12,89 +12,9 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
 
-/* =================================================================== the game page */
-const CHARS = [
-  { id: 'fox', name: 'Fox', team: 'Wild Animal', c: '#c8402d', on: '#fff6e6', info: 'Wakes up at night with the other Wild Animals to choose who gets the trouble. By day, acts innocent.' },
-  { id: 'hobbit', name: 'Hobbit', team: 'Healer', c: '#1d7a90', on: '#fff6e6', info: 'Each night he protects one player. If the Wild Animals chose them, they’re safe. Nobody knows his face.' },
-  { id: 'blu', name: 'Blu', team: 'Detective', c: '#b8520c', on: '#fff6e6', info: 'Each night she investigates one player. The Narrator tells her if she found a Wild Animal.' },
-  { id: 'karin', name: 'Karin', team: 'Narrator', c: '#b8327e', on: '#fff6e6', info: 'Runs the game. Each morning she tells the farm what happened in the night, with her Secret Cookbook.' },
-  { id: 'raccoon', name: 'Raccoon', team: 'Prankster', c: '#8a6a00', on: '#fff6e6', info: 'Not a bad guy. Each night he pranks someone: the next day they can’t talk, or can’t vote.' },
-  { id: 'chicken', name: 'Chicken', team: 'Farm animal', c: '#087a40', on: '#fff6e6', info: 'One of the good guys. No special power: watch, talk and vote to find the Wild Animals.' },
-  { id: 'wolf', name: 'Wolf', team: 'Wild Animal', c: '#a8352b', on: '#fff6e6', info: 'A Wild Animal in disguise. When Blu investigates him, he always looks innocent.' }
-];
-const chars = $('characters');
-let ci = 0, chBusy = false;
-const chName = $('chName'), chCard = $('chCard'), chImg = $('chImg');
-function showChar(i, first) {
-  ci = (i + CHARS.length) % CHARS.length;
-  const c = CHARS[ci], p = CHARS[(ci - 1 + CHARS.length) % CHARS.length], n = CHARS[(ci + 1) % CHARS.length];
-  const apply = () => {
-    chars.style.setProperty('--c', c.c); chars.style.setProperty('--on', c.on);
-    chName.innerHTML = `<span>${c.name}</span>`;
-    chName.style.fontSize = Math.round(Math.min(innerWidth * .8 / (c.name.length * .47), innerHeight * .56, 460)) + 'px';
-    chImg.src = `img/cards/${c.id}.webp`; chImg.alt = `${c.name} card`;
-    $('chTeam').textContent = c.team; $('chInfo').textContent = c.info;
-    $('chCount').textContent = `${String(ci + 1).padStart(2, '0')} / ${String(CHARS.length).padStart(2, '0')}`;
-    $('chPrev').querySelector('b').textContent = p.name; $('chNext').querySelector('b').textContent = n.name;
-    $('chPrev').setAttribute('aria-label', `Previous character: ${p.name}`); $('chNext').setAttribute('aria-label', `Next character: ${n.name}`);
-  };
-  if (first || reduce) { apply(); return; }
-  if (chBusy) return; chBusy = true;
-  chName.classList.add('out'); chCard.classList.add('swap');
-  setTimeout(() => {
-    apply();
-    const done = () => { chName.classList.remove('out'); chCard.classList.remove('swap'); chBusy = false; };
-    chImg.decode ? chImg.decode().then(done, done) : done();
-  }, 300);
-}
-CHARS.forEach(c => { const im = new Image(); im.src = `img/cards/${c.id}.webp`; });
-showChar(0, true);
-$('chPrev').addEventListener('click', () => showChar(ci - 1));
-$('chNext').addEventListener('click', () => showChar(ci + 1));
-addEventListener('keydown', e => {
-  if (!root.classList.contains('m-game') && root.classList.contains('gl')) return;
-  const r = chars.getBoundingClientRect();
-  if (r.top > innerHeight * .5 || r.bottom < innerHeight * .5) return;
-  if (e.key === 'ArrowLeft') showChar(ci - 1); if (e.key === 'ArrowRight') showChar(ci + 1);
-});
-let sx = null;
-chars.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') sx = e.clientX; });
-chars.addEventListener('pointerup', e => { if (sx === null) return; const d = e.clientX - sx; sx = null; if (Math.abs(d) > 50) showChar(ci + (d < 0 ? 1 : -1)); });
-if (fine && !reduce) {
-  chars.addEventListener('pointermove', e => {
-    const r = chImg.getBoundingClientRect();
-    chImg.style.setProperty('--ry', clamp(((e.clientX - r.left) / r.width - .5) * 22, -16, 16) + 'deg');
-    chImg.style.setProperty('--rx', clamp(((e.clientY - r.top) / r.height - .5) * -16, -12, 12) + 'deg');
-  });
-  chars.addEventListener('pointerleave', () => { chImg.style.setProperty('--ry', '0deg'); chImg.style.setProperty('--rx', '0deg'); });
-  const box = document.querySelector('#boxShot img');
-  $('boxShot').addEventListener('pointermove', e => {
-    const r = box.getBoundingClientRect();
-    box.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 18 + 'deg');
-    box.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -10 + 'deg');
-  });
-  $('boxShot').addEventListener('pointerleave', () => { box.style.removeProperty('--ry'); box.style.removeProperty('--rx'); });
-}
-
-/* waitlist: saved by /api/subscribe (email + consent only) */
-const form = $('signup');
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const msg = $('formMsg'), btn = form.querySelector('button[type=submit]'), email = form.email.value.trim();
-  msg.classList.remove('ok');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = 'That email doesn’t look right. Check it and try again.'; form.email.setAttribute('aria-invalid', 'true'); form.email.focus(); return; }
-  form.email.removeAttribute('aria-invalid');
-  if (!form.consent.checked) { msg.textContent = 'Please tick the box to confirm you agree, then try again.'; form.consent.focus(); return; }
-  btn.disabled = true; const label = btn.textContent; btn.textContent = 'Saving…';
-  try {
-    const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, consent: true, website: form.website.value }) });
-    if (!r.ok) throw new Error(r.status);
-    msg.textContent = 'You’re on the list. We’ll email you when Karin’s Farm is available.'; msg.classList.add('ok');
-    form.reset();
-  } catch (err) {
-    msg.textContent = 'Something went wrong and your email wasn’t saved. Please try again in a moment.';
-  } finally { btn.disabled = false; btn.textContent = label; }
-});
+/* assets live next to this script (Shopify: the theme's assets folder) */
+const CFG = (() => { try { return JSON.parse(document.getElementById('kf-config').textContent); } catch (e) { return {}; } })();
+const A = p => (CFG.base || '') + p.replace(/\//g, '-');
 
 /* =================================================================== the story */
 const scenes = [...document.querySelectorAll('#story article')].map((a, i) => ({
@@ -243,10 +163,10 @@ canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); root.clas
 const tex = {};
 const want = [];
 scenes.forEach(s => { if (s.kind !== 'box') want.push([s.key, s.src]); });
-scenes.forEach(s => { s.insets.forEach(k => want.push(['inset-' + k, `img/i/${k}.webp`])); if (s.photo) want.push(['photo-' + s.key, s.photo, s.photoLabel]); });
-want.push(['hobbit', 'img/s/hobbit.webp'], ['letter', 'img/s/letter.webp'], ['foxc', 'img/s/fox.webp'], ['box', 'img/game/box.webp']);
+scenes.forEach(s => { s.insets.forEach(k => want.push(['inset-' + k, A(`img/i/${k}.webp`)])); if (s.photo) want.push(['photo-' + s.key, s.photo, s.photoLabel]); });
+want.push(['hobbit', A('img/s/hobbit.webp')], ['letter', A('img/s/letter.webp')], ['foxc', A('img/s/fox.webp')], ['box', A('img/game/box.webp')]);
 const FAN = ['fox', 'hobbit', 'blu', 'karin', 'raccoon', 'chicken', 'wolf'];
-FAN.forEach(k => want.push(['card-' + k, `img/cards/${k}.webp`]));
+FAN.forEach(k => want.push(['card-' + k, A(`img/cards/${k}.webp`)]));
 let loaded = 0;
 const loadPct = $('loadPct'), loader = $('loader');
 // a real photo, printed as an instant photo with a label
@@ -282,7 +202,7 @@ const vids = {};
 function setupVideo(s) {
   const v = document.createElement('video');
   v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto'; v.crossOrigin = 'anonymous';
-  [['mp4', 'video/mp4'], ['webm', 'video/webm']].forEach(([x, type]) => { const src = document.createElement('source'); src.src = `${s.video}.${x}`; src.type = type; v.appendChild(src); });
+  [['mp4', 'video/mp4'], ['webm', 'video/webm']].forEach(([x, type]) => { const src = document.createElement('source'); src.src = A(`${s.video}.${x}`); src.type = type; v.appendChild(src); });
   const t = gl.createTexture();
   vids[s.key] = { v, t, ready: false, w: 1, h: 1 };
   v.addEventListener('canplay', () => { const o = vids[s.key]; o.ready = true; o.w = v.videoWidth; o.h = v.videoHeight; }, { once: true });
