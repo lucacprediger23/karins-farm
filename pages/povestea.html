@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Povestea · Karin’s Farm</title>
+<meta name="description" content="Cum s-a născut Karin’s Farm: o zi ploioasă la Karin’s Summer Camp, în pădurea Băneasa, o vulpe în curte și un joc pentru copii. O poveste ilustrată.">
+<meta name="theme-color" content="#f3ead6">
+<link rel="canonical" href="https://karins-farm-lac.vercel.app/pages/povestea">
+<meta property="og:site_name" content="Karin’s Farm">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Povestea · Karin’s Farm">
+<meta property="og:description" content="Cum s-a născut Karin’s Farm: o zi ploioasă la Karin’s Summer Camp, în pădurea Băneasa, o vulpe în curte și un joc pentru copii. O poveste ilustrată.">
+<meta property="og:url" content="https://karins-farm-lac.vercel.app/pages/povestea">
+<meta property="og:image" content="https://karins-farm-lac.vercel.app/assets/img-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img-art-favicon.png">
+<link rel="preload" href="/assets/font-anton.woff" as="font" type="font/woff" crossorigin>
+<link href="/assets/base.css?v=74765e8f" rel="stylesheet" type="text/css" media="all">
+
+
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="tpl-story">
+<a class="skiplink" href="#characters" data-go="characters">Sari la joc</a>
+<div id="shopify-section-kf-story" class="shopify-section kf-story-section">
+<header class="bar" id="bar">
+  <a class="brand" href="/" aria-label="Karin’s Farm, pagina principală"><img src="/assets/img-farm-logo.webp" alt="" width="1000" height="658"></a>
+  <nav class="nav" aria-label="Principal">
+    <a href="#story" data-go="story" class="on">Povestea</a>
+    <a href="#characters" data-go="characters">Jocul</a>
+    <a href="#join" data-go="join">Cumpără</a>
+  </nav>
+  <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Pornește sunetul"><i></i><i></i><i></i><i></i></button>
+</header>
+
+<!-- the cinematic story: one canvas, scrolled like a film -->
+<div class="stage" id="stage">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="title" id="title" aria-hidden="true">
+    <img class="t-logo" src="/assets/img-farm-logo.webp" width="1000" height="658" alt="">
+    <p class="t-tag">Mafia… pentru copii</p>
+  </div>
+  <div class="cap" id="cap" aria-hidden="true"><span class="cap-k"></span><span class="cap-t"></span></div>
+  <p class="big" id="big" aria-hidden="true"></p>
+  <div class="letter" id="letter" role="note" aria-label="Scrisoarea Hobbitului" aria-hidden="true">
+    <p>Dragi copii,</p>
+    <p>Cineva face pozne la fermă. Aveți grijă de animale și fiți cu ochii unii pe alții.</p>
+    <p>În cine puteți avea încredere?</p>
+    <p class="sig">— H.</p>
+  </div>
+  <button class="hold" id="hold" type="button" tabindex="-1"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="r0" cx="50" cy="50" r="46"/><circle class="r1" cx="50" cy="50" r="46"/></svg><span id="holdLabel">Ține apăsat</span></button>
+  <div class="end" id="end">
+    <a class="hud-btn" href="#characters" data-go="characters">Vezi personajele</a>
+    <a class="hud-btn ghost" href="#join" data-go="join">Cumpără jocul</a>
+  </div>
+  <div class="hint" id="hint" aria-hidden="true"><span>Derulează</span><i></i></div>
+  <a class="skip" href="#characters" data-go="characters" id="skip">Sari peste poveste ⟫</a>
+  <div class="prog" id="prog" aria-hidden="true"><i></i></div>
+  <div class="loader" id="loader" aria-hidden="true"><span id="loadPct">0</span></div>
+</div>
+
+<main>
+<!-- The story as plain text and pictures: what screen readers read, and what shows without the animated version -->
+<section class="flat" id="story" aria-label="Povestea Karin’s Farm">
+  <article data-img="forest" data-bg="#f3ead6" data-kind="title">
+    <img src="/assets/img-s-forest.webp" width="1280" height="1280" alt="O potecă ilustrată printr-o pădure de stejari în lumina apusului, cu o cabană de lemn lângă un lac" loading="lazy">
+    <div><h1>Karin’s Farm</h1><p>Mafia… pentru copii. Un joc de cărți născut într-o zi ploioasă de tabără.</p></div>
+  </article>
+  <article data-img="camp" data-insets="camp-feet" data-world="1" data-bg="#f6e3b8" data-tilt="-3" data-cap="bl">
+    <img src="/assets/img-s-camp.webp" width="1280" height="1280" alt="Copii care aleargă și se joacă de-a prinselea printre copaci înalți, într-o pădure însorită" loading="lazy">
+    <div><p class="k">01 · Tabăra de vară</p><p class="t">În fiecare vară, pădurea Băneasa se umple de copii. Aici e Karin’s Summer Camp, în București.</p></div>
+  </article>
+  <article data-img="rain" data-video="img/v/rain" data-insets="rain-boots" data-bg="#33445e" data-tilt="3" data-cap="tr" data-rain="1">
+    <img src="/assets/img-s-rain.webp" width="1280" height="1280" alt="Copii în pelerine colorate aleargă prin furtună spre o cabană" loading="lazy">
+    <div><p class="k">02 · Ploaia</p><p class="t">Apoi a început să toarne. Toate jocurile pe care le plănuisem s-au dus pe apa sâmbetei.</p></div>
+  </article>
+  <article data-img="circle" data-bg="#3d5068" data-tilt="-2" data-cap="br" data-rain=".55">
+    <img src="/assets/img-s-circle.webp" width="1280" height="1280" alt="Văzuți de sus, doisprezece copii stau în cerc pe o podea de lemn" loading="lazy">
+    <div><p class="k">03 · Adăpostul</p><p class="t">Am fugit la adăpost și ne-am așezat în cerc.</p></div>
+  </article>
+  <article data-img="eyes" data-bg="#f4c650" data-tilt="2" data-cap="tl" data-big="Mafia?<br>Pentru copii?" data-size=".84">
+    <img src="/assets/img-s-eyes.webp" width="1280" height="1280" alt="Ochii verzi, mari și curioși ai unui copil, de aproape" loading="lazy">
+    <div><p class="k">04 · Întrebarea</p><p class="t">Copiii voiau să joace Mafia. Dar Mafia e un joc pentru adulți. Cum să meargă și pentru ei?</p></div>
+  </article>
+  <article data-img="idea" data-insets="idea-notebook" data-bg="#3a4c63" data-tilt="-3" data-cap="bl" data-rain=".35" data-hold="think" data-hold-label="Ține și gândește" data-done="Asta e!">
+    <img src="/assets/img-s-idea.webp" width="1280" height="1280" alt="Un tânăr animator stă sub acoperișul adăpostului și se gândește, cu un bec aprins deasupra capului" loading="lazy">
+    <div><p class="k">05 · Ideea</p><p class="t">Să facem jocul din lucrurile pe care copiii le știu și le iubesc deja.</p></div>
+  </article>
+  <article data-img="yard" data-photo="/assets/img-photos-yard.jpg" data-photo-label="Curtea noastră" data-photo-pos="bl" data-bg="#d4e6a4" data-tilt="3" data-cap="tr">
+    <img src="/assets/img-s-yard.webp" width="1280" height="1280" alt="Găini, un cocoș, o rață și iepuri într-o curte de fermă din pădure" loading="lazy">
+    <div><p class="k">06 · Curtea</p><p class="t">Animalele din curtea noastră. Copiii le hrănesc în fiecare zi.</p><figure class="real"><img src="/assets/img-photos-yard.jpg" width="900" height="675" alt="Fotografie: copii hrănesc găinile lângă coteț, în curtea taberei" loading="lazy"><figcaption>Fotografie reală · Curtea noastră</figcaption></figure></div>
+  </article>
+  <article data-img="night" data-insets="night-eyes" data-world="1" data-bg="#121a30" data-tilt="0" data-cap="tl" data-hold="lamp" data-hold-label="Ține și mișcă" data-done="Te-am prins!">
+    <img src="/assets/img-s-night.webp" width="1280" height="1280" alt="Noaptea, o vulpe se furișează prin curte spre cotețul găinilor" loading="lazy">
+    <div><p class="k">07 · Vulpea</p><p class="t">Într-o noapte, vulpea s-a strecurat în curtea noastră. O poți găsi?</p></div>
+  </article>
+  <article data-img="duck" data-wind="1" data-bg="#f6d6a0" data-tilt="-4" data-cap="br" data-size=".7">
+    <img src="/assets/img-s-duck.webp" width="1280" height="1280" alt="O rață albă și mândră, cu un petic negru la ochi" loading="lazy">
+    <div><p class="k">08 · Supraviețuitoarea</p><p class="t">Vulpea s-a întors de cinci ori. După ultimul atac, a rămas doar Rața. De-aia poartă petic la ochi.</p></div>
+  </article>
+  <article data-img="blu" data-insets="blu-nose,blu-paws" data-world="1" data-photo="/assets/img-photos-blu.jpg" data-photo-label="Blu, în realitate" data-photo-pos="br" data-bg="#f7b46c" data-tilt="3" data-cap="tl">
+    <img src="/assets/img-s-blu.webp" width="1280" height="1280" alt="Blu, un collie cu păr lung, urmărește urmele de vulpe pe o potecă din pădure" loading="lazy">
+    <div><p class="k">09 · Blu</p><p class="t">Blu e în fiecare tabără de cinci ani. Copiii spun că a fost câinele Hobbitului, acum 500 de ani.</p><figure class="real"><img src="/assets/img-photos-blu.jpg" width="600" height="900" alt="Fotografie: Blu, un collie cu păr lung, stă în fața unor decorațiuni de toamnă" loading="lazy"><figcaption>Fotografie reală · Blu, în realitate</figcaption></figure></div>
+  </article>
+  <article data-img="hhouse" data-world="1" data-photo="/assets/img-photos-hhouse.jpg" data-photo-label="Casa Hobbitului" data-photo-pos="tr" data-bg="#8ccbc9" data-tilt="-2" data-cap="tl" data-hold="letter" data-hold-label="Ține și deschide">
+    <img src="/assets/img-s-hhouse.webp" width="1280" height="1280" alt="O casă de hobbit sculptată din rădăcini de copac, cu ușă rotundă, între copaci mari" loading="lazy">
+    <div><p class="k">10 · Hobbitul</p><p class="t">Cândva ne-a apărat pădurea, iar casa lui e și acum în curte. Nimeni nu i-a văzut vreodată fața. Le scrie copiilor doar scrisori.</p><figure class="real"><img src="/assets/img-photos-hhouse.jpg" width="900" height="750" alt="Fotografie: casa Hobbitului, sculptată în lemn, în curtea taberei" loading="lazy"><figcaption>Fotografie reală · Casa Hobbitului</figcaption></figure></div>
+  </article>
+  <article data-img="karin" data-insets="karin-face" data-bg="#f7bcd9" data-tilt="3" data-cap="tr">
+    <img src="/assets/img-s-karin.webp" width="1280" height="1280" alt="Bunica Karin spune o poveste lângă șemineu, copiilor așezați pe un covor" loading="lazy">
+    <div><p class="k">11 · Karin</p><p class="t">Bunica Karin spune povestea. Academia îi poartă numele. În joc, ea e Naratoarea.</p></div>
+  </article>
+  <article data-img="play" data-insets="play-cards" data-bg="#ffd56e" data-tilt="-3" data-cap="bl">
+    <img src="/assets/img-s-play.webp" width="1280" height="1280" alt="Copii care râd și arată unii spre alții în timp ce joacă cărți sub adăpost" loading="lazy">
+    <div><p class="k">12 · După ploaie</p><p class="t">Nimeni nu voia să se oprească. De atunci, l-au jucat în jur de 100 de copii.</p></div>
+  </article>
+  <article data-img="box" data-bg="#fe7620" data-kind="box" data-cap="tl">
+    <img src="/assets/img-game-box.webp" width="900" height="1223" alt="Cutia Karin’s Farm" loading="lazy">
+    <div><p class="k">13 · Acum</p><p class="t">Acum are propria cutie.</p></div>
+  </article>
+</section>
+
+
+
+</div>
+<section class="game" id="game" aria-label="Jocul">
+<div id="shopify-section-template--kf__characters" class="shopify-section kf-chars-section">
+<div class="chars" id="characters" data-chars aria-labelledby="ch-h-template--kf__characters" style="--c: #c8402d;">
+  <h2 class="sr-only" id="ch-h-template--kf__characters">Personajele</h2>
+  <p class="ch-kicker">Personajele</p>
+  <div class="ch-stage">
+    <p class="ch-name" aria-live="polite"></p>
+    <figure class="ch-card"><img src="/assets/img-cards-fox.webp" width="723" height="1038" alt="Cartea Vulpea"></figure>
+    <button class="ch-side prev" type="button"><small>Înapoi</small><b></b></button>
+    <button class="ch-side next" type="button"><small>Înainte</small><b></b></button>
+  </div>
+  <div class="ch-meta">
+    <span class="ch-team"></span>
+    <p class="ch-info"></p>
+    <span class="ch-count"></span>
+  </div>
+  <script type="application/json" class="ch-data">[{"name": "Vulpea", "team": "Animal Sălbatic", "c": "#c8402d", "on": "#fff6e6", "info": "Se trezește noaptea cu celelalte Animale Sălbatice ca să aleagă cine dă de bucluc. Ziua face pe nevinovata.", "alt": "Cartea Vulpea", "img": "/assets/img-cards-fox.webp"},{"name": "Hobbitul", "team": "Vindecător", "c": "#1d7a90", "on": "#fff6e6", "info": "În fiecare noapte apără un jucător. Dacă Animalele Sălbatice l-au ales pe el, e în siguranță. Nimeni nu i-a văzut fața.", "alt": "Cartea Hobbitul", "img": "/assets/img-cards-hobbit.webp"},{"name": "Blu", "team": "Detectiv", "c": "#b8520c", "on": "#fff6e6", "info": "În fiecare noapte cercetează un jucător. Naratoarea îi spune dacă a dat peste un Animal Sălbatic.", "alt": "Cartea Blu", "img": "/assets/img-cards-blu.webp"},{"name": "Karin", "team": "Naratoare", "c": "#b8327e", "on": "#fff6e6", "info": "Conduce jocul. În fiecare dimineață le povestește tuturor ce s-a întâmplat noaptea, cu Caietul ei secret de rețete.", "alt": "Cartea Karin", "img": "/assets/img-cards-karin.webp"},{"name": "Ratonul", "team": "Farsor", "c": "#8a6a00", "on": "#fff6e6", "info": "Nu e dintre cei răi. În fiecare noapte îi face cuiva o farsă: a doua zi, acela nu poate vorbi sau nu poate vota.", "alt": "Cartea Ratonul", "img": "/assets/img-cards-raccoon.webp"},{"name": "Găina", "team": "Animal de fermă", "c": "#087a40", "on": "#fff6e6", "info": "E dintre cei buni. N-are puteri speciale: urmărește, discută și votează ca să găsească Animalele Sălbatice.", "alt": "Cartea Găina", "img": "/assets/img-cards-chicken.webp"},{"name": "Lupul", "team": "Animal Sălbatic", "c": "#a8352b", "on": "#fff6e6", "info": "Un Animal Sălbatic deghizat. Când Blu îl cercetează, pare mereu nevinovat.", "alt": "Cartea Lupul", "img": "/assets/img-cards-wolf.webp"}]</script>
+  <noscript>
+    <ul class="ch-list"><li><b>Vulpea</b> · Animal Sălbatic: Se trezește noaptea cu celelalte Animale Sălbatice ca să aleagă cine dă de bucluc. Ziua face pe nevinovata.</li><li><b>Hobbitul</b> · Vindecător: În fiecare noapte apără un jucător. Dacă Animalele Sălbatice l-au ales pe el, e în siguranță. Nimeni nu i-a văzut fața.</li><li><b>Blu</b> · Detectiv: În fiecare noapte cercetează un jucător. Naratoarea îi spune dacă a dat peste un Animal Sălbatic.</li><li><b>Karin</b> · Naratoare: Conduce jocul. În fiecare dimineață le povestește tuturor ce s-a întâmplat noaptea, cu Caietul ei secret de rețete.</li><li><b>Ratonul</b> · Farsor: Nu e dintre cei răi. În fiecare noapte îi face cuiva o farsă: a doua zi, acela nu poate vorbi sau nu poate vota.</li><li><b>Găina</b> · Animal de fermă: E dintre cei buni. N-are puteri speciale: urmărește, discută și votează ca să găsească Animalele Sălbatice.</li><li><b>Lupul</b> · Animal Sălbatic: Un Animal Sălbatic deghizat. Când Blu îl cercetează, pare mereu nevinovat.</li></ul>
+  </noscript>
+</div>
+
+
+</div>
+<div id="shopify-section-template--kf__box" class="shopify-section kf-box-section">
+<div class="facts" id="cutia" aria-labelledby="box-h-template--kf__box">
+  <figure class="box-shot fanned" data-tilt>
+    <img class="fan-card c1" src="/assets/img-cards-fox.webp" alt="" width="723" height="1038" loading="lazy">
+    <img class="fan-card c2" src="/assets/img-cards-blu.webp" alt="" width="723" height="1038" loading="lazy">
+    <img class="fan-card c3" src="/assets/img-cards-karin.webp" alt="" width="723" height="1038" loading="lazy">
+    <div class="main" data-tilt-target><img src="/assets/img-game-box.webp" alt="Cutia Karin’s Farm: Blu detectivul, o găină speriată și Vulpea, sub cuvintele Mafia… for kids" width="900" height="1223" loading="lazy" decoding="async"></div>
+  </figure>
+  <div class="f-copy">
+    <p class="kicker">Ce e în cutie</p>
+    <h2 id="box-h-template--kf__box">Tot ce trebuie pentru prima seară de joc</h2>
+    <p class="lead">Desfaci cutia, împarți cărțile și Karin, Naratoarea, vă duce prin prima noapte la fermă.</p>
+    <dl class="stats"><div><dt>Jucători</dt><dd>6–22</dd></div><div><dt>Minute</dt><dd>30</dd></div><div><dt>Vârstă</dt><dd>6+</dd></div></dl><ul class="contents"><li ><b>22</b> de cărți cu personaje</li><li ><b>2</b> pagini de benzi desenate</li><li ><b>1</b> regulament ilustrat</li><li ><b>1</b> Caietul secret de rețete al lui Karin</li></ul></div>
+</div>
+
+
+</div>
+<div id="shopify-section-template--kf__how" class="shopify-section kf-how-section">
+<div class="how" id="cum-se-joaca" aria-labelledby="how-h-template--kf__how">
+  <p class="kicker">Cum se joacă</p>
+  <h2 id="how-h-template--kf__how">Noapte. Dimineață. Vot.</h2>
+  <ol class="steps"><li ><img src="/assets/img-cards-back-tracks.webp" alt="" width="723" height="1038" loading="lazy" decoding="async"><b>Primești o carte</b><span>O ții secretă. Karin, Naratoarea, conduce jocul.</span></li><li ><img src="/assets/img-cards-fox.webp" alt="" width="723" height="1038" loading="lazy" decoding="async"><b>Se lasă noaptea</b><span>Toți închid ochii. Animalele Sălbatice aleg cui să-i facă o poznă.</span></li><li ><img src="/assets/img-cards-blu.webp" alt="" width="723" height="1038" loading="lazy" decoding="async"><b>Vine dimineața</b><span>Karin povestește ce s-a întâmplat. Toți discută și bănuiesc.</span></li><li ><img src="/assets/img-cards-donkey.webp" alt="" width="723" height="1038" loading="lazy" decoding="async"><b>Votul</b><span>Cine are cele mai multe voturi iese din joc. Continuați până găsiți toate Animalele Sălbatice.</span></li></ol>
+</div>
+
+
+</div>
+<div id="shopify-section-template--kf__buy" class="shopify-section kf-buy-section">
+<section class="join buy-final" id="join" aria-labelledby="buy-h-template--kf__buy" data-cta-zone>
+  <div class="burrow" aria-hidden="true">
+    <img class="b-room" src="/assets/img-world-burrow.webp" width="2000" height="1123" alt="" loading="lazy">
+    <img class="b-rabbit" src="/assets/img-world-rabbit.webp" width="700" height="700" alt="" loading="lazy">
+  </div>
+  <div class="bf-grid">
+    <figure class="bf-box" data-tilt><img src="/assets/img-game-box.webp" alt="Cutia Karin’s Farm: Blu detectivul, o găină speriată și Vulpea, sub cuvintele Mafia… for kids" width="900" height="1223" loading="lazy" decoding="async"></figure>
+    <div class="bf-copy"><p class="kicker">Comandă</p><h2 id="buy-h-template--kf__buy">Adu ferma acasă</h2><p class="lead">22 de cărți, regulamentul ilustrat și Caietul secret de rețete al lui Karin, într-o singură cutie.</p><div class="bf-card"><div class="buy" data-buy data-price="14900" data-variant="4242001" data-fee="1900" data-free="25000">
+    <p class="buy-price">
+      <span class="sr-only">Preț:</span>
+      <span class="price-now">149 lei</span>
+      <span class="price-unit">/ cutie</span></p><form method="post" action="/cart/add" id="template--kf__buy" class="buy-form" novalidate="novalidate" accept-charset="UTF-8" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="id" value="4242001">
+        <input type="hidden" name="return_to" value="/checkout">
+        <div class="qty" role="group" aria-label="Câte cutii">
+          <button class="qty-btn" type="button" data-step="-1" aria-label="O cutie mai puțin" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
+          <label class="sr-only" for="template--kf__buy-qty">Câte cutii</label>
+          <input class="qty-input" id="template--kf__buy-qty" name="quantity" type="number" inputmode="numeric" value="1" min="1" max="10">
+          <button class="qty-btn" type="button" data-step="1" aria-label="Încă o cutie"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
+        </div>
+        <button class="hud-btn buy-btn" type="submit" name="add">Comandă acum <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </form>
+      <p class="buy-total" aria-live="polite">
+        <span>Total: <b data-total>168 lei</b></span>
+        <span class="buy-ship" data-ship>Livrare 19 lei</span>
+      </p><p class="buy-free" data-free-msg data-more="Mai adaugă o cutie și livrarea e gratuită" data-got="Ai livrare gratuită">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7" cy="17.5" r="1.8" fill="currentColor"/><circle cx="17" cy="17.5" r="1.8" fill="currentColor"/></svg>
+          <span>Mai adaugă o cutie și livrarea e gratuită</span>
+        </p><ul class="buy-trust"><li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.5 10h19" stroke="currentColor" stroke-width="2"/></svg>Plătești cu cardul sau ramburs, la curier</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9z M3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Livrare prin curier în 1–3 zile lucrătoare</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="/policies/refund-policy">14 zile ca să te răzgândești</a></li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+
+
+</div>
+<div id="shopify-section-template--kf__faq" class="shopify-section kf-faq-section">
+<div class="faq" id="intrebari" aria-labelledby="faq-h-template--kf__faq">
+  <p class="kicker">Întrebări</p>
+  <h2 id="faq-h-template--kf__faq">Bine de știut</h2>
+  <div class="qa"><details ><summary>Cât costă livrarea și în cât timp ajunge jocul?</summary><p>Livrarea prin curier costă 19 lei și e gratuită pentru comenzile de peste 250 lei, adică de la 2 cutii. Coletul ajunge în 1–3 zile lucrătoare. Detalii în <a href="/policies/shipping-policy">politica de livrare</a>.</p></details><details ><summary>Cum pot plăti?</summary><p>Online, cu cardul (Visa, Mastercard, Apple Pay sau Google Pay), sau ramburs, adică plătești curierului când primești coletul.</p></details><details ><summary>Pot returna jocul?</summary><p>Da. Ai 14 zile de la primire ca să te răzgândești, fără să ne spui de ce. Scrie-ne la <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a> și îți explicăm pașii. Detalii în <a href="/policies/refund-policy">politica de retur</a>.</p></details><details ><summary>Pentru ce vârstă e jocul?</summary><p>Pentru copii de la 6 ani, cu prietenii sau cu familia. Un joc durează cam 30 de minute și se joacă de la 6 până la 22 de jucători.</p></details><details ><summary>Trebuie să știm să jucăm Mafia?</summary><p>Nu. Regulamentul ilustrat explică totul, iar un jucător devine Karin, Naratoarea, și ghidează jocul pas cu pas.</p></details><details ><summary>Pot comanda mai multe cutii, pentru o școală sau o tabără?</summary><p>Da. Alege câte cutii vrei la comandă sau, pentru comenzi mari, scrie-ne la <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>.</p></details><details ><summary>Primesc factură?</summary><p>Da, primești factura pe email după ce comanda e trimisă.</p></details><details ><summary>Cine a făcut jocul?</summary><p>Karin’s Farm a fost creat la Karin’s Kids Academy și Karin’s Summer Camp, în pădurea Băneasa din București, împreună cu copiii care l-au jucat primii.</p></details></div>
+</div><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{"@type": "Question", "name": "Cât costă livrarea și în cât timp ajunge jocul?", "acceptedAnswer": {"@type": "Answer", "text": "Livrarea prin curier costă 19 lei și e gratuită pentru comenzile de peste 250 lei, adică de la 2 cutii. Coletul ajunge în 1–3 zile lucrătoare. Detalii în politica de livrare."}},{"@type": "Question", "name": "Cum pot plăti?", "acceptedAnswer": {"@type": "Answer", "text": "Online, cu cardul (Visa, Mastercard, Apple Pay sau Google Pay), sau ramburs, adică plătești curierului când primești coletul."}},{"@type": "Question", "name": "Pot returna jocul?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Ai 14 zile de la primire ca să te răzgândești, fără să ne spui de ce. Scrie-ne la lucacprediger@gmail.com și îți explicăm pașii. Detalii în politica de retur."}},{"@type": "Question", "name": "Pentru ce vârstă e jocul?", "acceptedAnswer": {"@type": "Answer", "text": "Pentru copii de la 6 ani, cu prietenii sau cu familia. Un joc durează cam 30 de minute și se joacă de la 6 până la 22 de jucători."}},{"@type": "Question", "name": "Trebuie să știm să jucăm Mafia?", "acceptedAnswer": {"@type": "Answer", "text": "Nu. Regulamentul ilustrat explică totul, iar un jucător devine Karin, Naratoarea, și ghidează jocul pas cu pas."}},{"@type": "Question", "name": "Pot comanda mai multe cutii, pentru o școală sau o tabără?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Alege câte cutii vrei la comandă sau, pentru comenzi mari, scrie-ne la lucacprediger@gmail.com."}},{"@type": "Question", "name": "Primesc factură?", "acceptedAnswer": {"@type": "Answer", "text": "Da, primești factura pe email după ce comanda e trimisă."}},{"@type": "Question", "name": "Cine a făcut jocul?", "acceptedAnswer": {"@type": "Answer", "text": "Karin’s Farm a fost creat la Karin’s Kids Academy și Karin’s Summer Camp, în pădurea Băneasa din București, împreună cu copiii care l-au jucat primii."}}]
+}</script>
+</div>
+<div id="shopify-section-sections--kf__footer" class="shopify-section kf-footer">
+<footer class="foot">
+  <div class="foot-top">
+    <div class="foot-brand"><img src="/assets/img-farm-logo.webp" alt="Karin’s Farm" width="1000" height="658" class="foot-logo" loading="lazy" decoding="async"><p>Născut la Karin’s Kids Academy și Karin’s Summer Camp, în pădurea Băneasa, București.</p></div>
+    <nav class="foot-nav" aria-label="Informații legale"><a href="/policies/terms-of-service" >Termeni și condiții</a><a href="/policies/shipping-policy" >Livrare</a><a href="/policies/refund-policy" >Retur</a><a href="/policies/privacy-policy" >Confidențialitate</a><a href="/pages/cookies" >Cookie-uri</a><a href="/policies/contact-information" >Contact</a><button class="cookie-prefs" type="button" data-cookie-prefs hidden>Setări cookie-uri</button>
+    </nav>
+    <div class="foot-help"><p class="kicker">Ai o întrebare?</p><p><a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a></p><p class="small">Răspundem în aceeași zi lucrătoare.</p></div>
+  </div>
+  <div class="foot-anpc">
+    <a class="anpc" href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener"><span class="anpc-badge"><b>ANPC</b><span>Soluționarea alternativă a litigiilor</span></span></a>
+    <a class="anpc" href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener"><span class="anpc-badge sol"><b>SOL</b><span>Soluționarea online a litigiilor</span></span></a>
+  </div><p class="small foot-company">[Denumirea firmei] SRL · CUI [—] · Nr. Reg. Com. [—] · [adresa sediului], București</p><p class="small">© 2026 Karin’s Farm</p>
+</footer>
+
+
+
+</div>
+</section>
+</main>
+<script type="application/json" id="kf-config">{
+  "base": "/assets/",
+  "platform": "preview",
+  "money": "{{amount_no_decimals}} lei",
+  "cartCount": 0,
+  "t": {
+    "prev": "Personajul anterior",
+    "next": "Personajul următor",
+    "shipping": "Livrare",
+    "free": "gratuită",
+    "cart_count": "Coș, {{ count }} produse",
+    "sound_on": "Pornește sunetul",
+    "sound_off": "Oprește sunetul",
+    "real_photo": "FOTOGRAFIE REALĂ",
+    "hold": "Ține apăsat",
+    "to_night": "Fă noapte la fermă",
+    "to_day": "Fă zi la fermă",
+    "barn_open": "Bate la ușa hambarului",
+    "barn_close": "Închide ușile hambarului",
+    "menu": "Meniu",
+    "close_menu": "Închide meniul"
+  }
+}</script>
+
+<script src="/assets/kf.js?v=8f6da290" defer></script>
+<script src="/assets/story.js?v=c6ba6e4d" defer></script>
+</body>
+</html>

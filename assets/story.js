@@ -20,7 +20,7 @@ const A = p => (CFG.base || '') + p.replace(/\//g, '-');
 const scenes = [...document.querySelectorAll('#story article')].map((a, i) => ({
   i, kind: a.dataset.kind || 'panel', key: a.dataset.img, src: a.querySelector('img').getAttribute('src'),
   bg: hex(a.dataset.bg || '#f3ead6'), tilt: +(a.dataset.tilt || 0), cap: a.dataset.cap || 'bl', rain: +(a.dataset.rain || 0), wind: +(a.dataset.wind || 0),
-  hold: a.dataset.hold || null, holdLabel: a.dataset.holdLabel || 'Hold', doneText: a.dataset.done || '', big: a.dataset.big || '',
+  hold: a.dataset.hold || null, holdLabel: a.dataset.holdLabel || (CFG.t && CFG.t.hold) || 'Hold', doneText: a.dataset.done || '', big: a.dataset.big || '',
   size: +(a.dataset.size || 1), k: (a.querySelector('.k') || {}).textContent || '', t: (a.querySelector('.t') || {}).textContent || '',
   insets: (a.dataset.insets || '').split(',').filter(Boolean), pop: a.dataset.pop || null, video: a.dataset.video || null, world: !!a.dataset.world, photo: a.dataset.photo || null, photoLabel: a.dataset.photoLabel || '', photoPos: a.dataset.photoPos || 'br',
   finished: !a.dataset.hold, hp: 0, doneAt: -1, seed: Math.random() * 10
@@ -181,7 +181,7 @@ function polaroid(img, label) {
   x.fillStyle = 'rgba(0,0,0,.08)'; x.fillRect(pad, pad, iw, 2);
   x.fillStyle = '#b4470c'; x.font = '600 20px "Chakra Petch", sans-serif'; x.textBaseline = 'alphabetic';
   if (x.letterSpacing !== undefined) x.letterSpacing = '4px';
-  x.fillText('REAL PHOTO', pad, pad + ih + 52);
+  x.fillText((CFG.t && CFG.t.real_photo) || 'REAL PHOTO', pad, pad + ih + 52);
   x.fillStyle = '#15120f'; x.font = '600 34px "Chakra Petch", sans-serif';
   if (x.letterSpacing !== undefined) x.letterSpacing = '1px';
   x.fillText(label.toUpperCase(), pad, pad + ih + 94);
@@ -441,7 +441,7 @@ soundBtn.addEventListener('click', () => {
   ensureAudio(true); if (!AC) return;
   soundOn = !soundOn; AC.resume && AC.resume();
   master.gain.setTargetAtTime(soundOn ? 1 : 0, AC.currentTime, .25);
-  soundBtn.setAttribute('aria-pressed', String(soundOn)); soundBtn.setAttribute('aria-label', soundOn ? 'Turn sound off' : 'Turn sound on');
+  soundBtn.setAttribute('aria-pressed', String(soundOn)); soundBtn.setAttribute('aria-label', soundOn ? ((CFG.t && CFG.t.sound_off) || 'Turn sound off') : ((CFG.t && CFG.t.sound_on) || 'Turn sound on'));
 });
 
 /* ---------- drawing ---------- */

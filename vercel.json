@@ -43,7 +43,52 @@
   "redirects": [
     {
       "source": "/story",
-      "destination": "/pages/story",
+      "destination": "/pages/povestea",
+      "permanent": false
+    },
+    {
+      "source": "/pages/story",
+      "destination": "/pages/povestea",
+      "permanent": false
+    },
+    {
+      "source": "/povestea",
+      "destination": "/pages/povestea",
+      "permanent": false
+    },
+    {
+      "source": "/privacy",
+      "destination": "/policies/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-ro",
+      "destination": "/policies/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/terms",
+      "destination": "/policies/terms-of-service",
+      "permanent": false
+    },
+    {
+      "source": "/terms-ro",
+      "destination": "/policies/terms-of-service",
+      "permanent": false
+    },
+    {
+      "source": "/cookies",
+      "destination": "/pages/cookies",
+      "permanent": false
+    },
+    {
+      "source": "/cookies-ro",
+      "destination": "/pages/cookies",
+      "permanent": false
+    },
+    {
+      "source": "/products",
+      "destination": "/products/karins-farm",
       "permanent": false
     }
   ]

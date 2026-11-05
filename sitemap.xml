@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://karins-farm-lac.vercel.app/</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/pages/story</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/privacy</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/terms</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/cookies</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/privacy-ro</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/terms-ro</loc></url>
-  <url><loc>https://karins-farm-lac.vercel.app/cookies-ro</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/pages/povestea</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/products/karins-farm</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/policies/terms-of-service</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/policies/shipping-policy</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/policies/refund-policy</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/policies/privacy-policy</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/policies/contact-information</loc></url>
+  <url><loc>https://karins-farm-lac.vercel.app/pages/cookies</loc></url>
 </urlset>
