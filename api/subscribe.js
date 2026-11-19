@@ -22,7 +22,7 @@ function errorPage(code) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Not saved yet · Karin’s Farm</title><meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/base.css"></head>
+<link rel="stylesheet" href="/assets/base.css?v=7ad3ee57"></head>
 <body><main class="doc wl-result" id="doc">
 <p class="kicker">Waitlist</p><h1>Not saved yet</h1>
 <p class="lead" role="alert">${MESSAGES[code]}</p>
