@@ -27,9 +27,9 @@
 <div id="shopify-section-sections--kf__header" class="shopify-section kf-header">
 <header class="site-head" id="siteHead">
   <a class="brand" href="/" aria-label="Karin’s Farm home"><img src="/assets/img-farm-logo.webp" alt="" width="1000" height="658" loading="eager"></a>
-  <nav class="site-nav" id="menu" aria-label="Main"><a href="#how" >How to play</a><a href="#characters" >Characters</a><a href="#box" >The box</a><a href="/pages/story" >The story</a><a href="#faq" >FAQ</a><a class="hud-btn nav-cta" href="#join">Join the waitlist</a>
+  <nav class="site-nav" id="menu" aria-label="Main"><a href="#how" >How to play</a><a href="#characters" >Characters</a><a href="#box" >The box</a><a href="/pages/story" >The story</a><a href="#faq" >FAQ</a><a class="hud-btn nav-cta" href="/waitlist">Join the waitlist</a>
   </nav>
-  <div class="head-actions"><a class="hud-btn head-cta" href="#join">Join the waitlist</a>
+  <div class="head-actions"><a class="hud-btn head-cta" href="/waitlist">Join the waitlist</a>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu"><span class="sr-only">Menu</span><i></i><i></i></button>
   </div>
 </header>
@@ -43,13 +43,17 @@
   <div class="hero-copy"><p class="kicker">The card game born at summer camp</p><h1 class="hero-h" id="hero-h-template--kf__hero">Mafia…<br />
 for kids</h1><p class="hero-lead">At night, the Wild Animals sneak into the farm. In the morning, everyone talks, suspects and votes to find them. A secret-role card game for kids and families.</p><dl class="chips"><div><dt>Players</dt><dd>6–22</dd></div><div><dt>Minutes</dt><dd>30</dd></div><div><dt>Ages</dt><dd>6+</dd></div></dl>
     <div class="hero-buy" data-cta-zone>
-      <form method="post" action="/contact#contact_form" id="hero-buy" class="signup" accept-charset="UTF-8"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
-  <input type="hidden" name="contact[tags]" value="waitlist,newsletter"><label class="sr-only" for="hero-buy-email">Email address</label>
-    <input id="hero-buy-email" name="contact[email]" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="hero-buy-msg">
+      <form method="post" action="/api/subscribe" id="hero-buy" class="signup" accept-charset="UTF-8"><label class="sr-only" for="hero-buy-email">Email address</label>
+    <input id="hero-buy-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="hero-buy-msg">
     <button class="hud-btn" type="submit">Join the waitlist</button>
     <div class="hp" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
     <label class="consent"><input type="checkbox" name="consent" required> <span>I’m 16 or older and I agree that Karin’s Farm may email me when the game is available. I can unsubscribe at any time. Read the <a href="/privacy">privacy policy</a>.</span></label>
     <p class="form-msg" id="hero-buy-msg" role="status" aria-live="polite"></p></form>
+    <ul class="perks" aria-label="What you get by joining">
+      <li>One email when Karin’s Farm is out, with the price and the date</li>
+      <li>No spam, and we never share your email</li>
+      <li>Unsubscribe any time</li>
+    </ul>
     </div>
     <a class="story-link" href="/pages/story">
       <span class="sl-thumb"><img src="/assets/img-s-rain.webp" alt="" width="1280" height="1280" loading="lazy" decoding="async"><i aria-hidden="true"></i></span>
@@ -113,8 +117,8 @@ for kids</h1><p class="hero-lead">At night, the Wild Animals sneak into the farm
 </div>
 <div id="shopify-section-template--kf__characters" class="shopify-section kf-chars-section">
 <div class="chars" id="characters" data-chars aria-labelledby="ch-h-template--kf__characters" style="--c: #c8402d;">
-  <h2 class="sr-only" id="ch-h-template--kf__characters">The characters</h2>
   <p class="ch-kicker">The characters</p>
+  <h2 class="ch-h" id="ch-h-template--kf__characters">Who’s on the farm?</h2>
   <div class="ch-stage">
     <p class="ch-name" aria-live="polite"></p>
     <figure class="ch-card"><img src="/assets/img-cards-fox.webp" width="723" height="1038" alt="Fox card"></figure>
@@ -173,13 +177,17 @@ for kids</h1><p class="hero-lead">At night, the Wild Animals sneak into the farm
   </div>
   <div class="j-copy"><p class="kicker">Waitlist</p>
       <h2 id="join-h-template--kf__buy">Be first on the farm</h2>
-      <p class="lead">Karin’s Farm isn’t on sale yet. Leave your email and we’ll tell you when it is. Nothing else.</p><form method="post" action="/contact#contact_form" id="template--kf__buy" class="signup" accept-charset="UTF-8"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
-  <input type="hidden" name="contact[tags]" value="waitlist,newsletter"><label class="sr-only" for="template--kf__buy-email">Email address</label>
-    <input id="template--kf__buy-email" name="contact[email]" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="template--kf__buy-msg">
+      <p class="lead">Karin’s Farm isn’t on sale yet. Leave your email and we’ll tell you when it is. Nothing else.</p><form method="post" action="/api/subscribe" id="template--kf__buy" class="signup" accept-charset="UTF-8"><label class="sr-only" for="template--kf__buy-email">Email address</label>
+    <input id="template--kf__buy-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="template--kf__buy-msg">
     <button class="hud-btn" type="submit">Join the waitlist</button>
     <div class="hp" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
     <label class="consent"><input type="checkbox" name="consent" required> <span>I’m 16 or older and I agree that Karin’s Farm may email me when the game is available. I can unsubscribe at any time. Read the <a href="/privacy">privacy policy</a>.</span></label>
     <p class="form-msg" id="template--kf__buy-msg" role="status" aria-live="polite"></p></form>
+    <ul class="perks" aria-label="What you get by joining">
+      <li>One email when Karin’s Farm is out, with the price and the date</li>
+      <li>No spam, and we never share your email</li>
+      <li>Unsubscribe any time</li>
+    </ul>
   </div>
 </div>
 
@@ -190,12 +198,12 @@ for kids</h1><p class="hero-lead">At night, the Wild Animals sneak into the farm
 <div class="faq" id="faq" aria-labelledby="faq-h-template--kf__faq">
   <p class="kicker">Questions</p>
   <h2 id="faq-h-template--kf__faq">Good to know</h2>
-  <div class="qa"><details ><summary>What is Karin’s Farm?</summary><p>A secret-role card game for kids and families, in the spirit of Mafia. Some players are secretly Wild Animals causing trouble at night; everyone else talks, suspects and votes to find them in the morning. It was born at Karin’s Summer Camp, in the forest of Băneasa, Bucharest.</p></details><details ><summary>Who is it for?</summary><p>Children aged 6 and up, playing with friends or family. A game takes about 30 minutes, for 6 to 22 players.</p></details><details ><summary>Do I need to know Mafia?</summary><p>No. The illustrated rulebook explains everything, and one player, Karin the Narrator, guides the game.</p></details><details ><summary>Can I buy it now?</summary><p>Not yet. Karin’s Farm isn’t on sale. Join the waitlist and we’ll email you when it is available.</p></details><details ><summary>When will it be available, and how much will it cost?</summary><p>We haven’t announced a date or a price yet. People on the waitlist will hear first.</p></details><details ><summary>What do you do with my email?</summary><p>We use it only to tell you when Karin’s Farm is available. We don’t sell it or share it for marketing. You can unsubscribe or ask us to delete it at any time by writing to <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>. Details are in our <a href="/privacy">privacy policy</a>.</p></details><details ><summary>Does this website use cookies or tracking?</summary><p>No. There are no advertising or analytics cookies and no trackers. See the <a href="/cookies">cookie policy</a>.</p></details><details ><summary>Who is behind Karin’s Farm?</summary><p>Karin’s Farm was created at Karin’s Kids Academy and Karin’s Summer Camp in Bucharest. The website is run by Luca Prediger, Bucharest, Romania. Contact: <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>.</p></details></div>
+  <div class="qa"><details ><summary>What is Karin’s Farm?</summary><p>A secret-role card game for kids and families, in the spirit of Mafia. Some players are secretly Wild Animals causing trouble at night; everyone else talks, suspects and votes to find them in the morning. It was born at Karin’s Summer Camp, in the forest of Băneasa, Bucharest.</p></details><details ><summary>Who is it for?</summary><p>Children aged 6 and up, playing with friends or family. A game takes about 30 minutes, for 6 to 22 players.</p></details><details ><summary>Do I need to know Mafia?</summary><p>No. The illustrated rulebook explains everything, and one player, Karin the Narrator, guides the game.</p></details><details ><summary>Can I buy it now?</summary><p>Not yet. Karin’s Farm isn’t on sale. <a href="/waitlist">Join the waitlist</a> and we’ll email you when it is available.</p></details><details ><summary>When will it be available, and how much will it cost?</summary><p>We haven’t announced a date or a price yet. People on the waitlist will hear first.</p></details><details ><summary>What happens when I join the waitlist?</summary><p>You’ll see “You’re on the list” straight away. We save only your email and your consent, in private storage in the EU. When Karin’s Farm is out, you get one email with the price and the date. That’s it.</p></details><details ><summary>What do you do with my email?</summary><p>We use it only to tell you when Karin’s Farm is available. We don’t sell it or share it for marketing. You can unsubscribe or ask us to delete it at any time by writing to <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>. Details are in our <a href="/privacy">privacy policy</a>.</p></details><details ><summary>Does this website use cookies or tracking?</summary><p>No. There are no advertising or analytics cookies and no trackers. See the <a href="/cookies">cookie policy</a>.</p></details><details ><summary>Who is behind Karin’s Farm?</summary><p>Karin’s Farm was created at Karin’s Kids Academy and Karin’s Summer Camp in Bucharest. The website is run by Luca Prediger, Bucharest, Romania. Contact: <a href="mailto:lucacprediger@gmail.com">lucacprediger@gmail.com</a>.</p></details></div>
 </div>
 </div>
 </main>
 <div id="shopify-section-sections--kf__footer" class="shopify-section kf-footer">
-<footer class="foot"><img src="/assets/img-farm-logo.webp" alt="Karin’s Farm" width="1000" height="658" class="foot-logo" loading="lazy" decoding="async"><p>Born at Karin’s Kids Academy and Karin’s Summer Camp, in the forest of Băneasa, Bucharest.</p><nav class="legal" aria-label="Legal"><a href="/privacy" >Privacy policy</a><a href="/terms" >Terms of use</a><a href="/cookies" >Cookie policy</a><a href="mailto:lucacprediger@gmail.com" >Contact</a></nav>
+<footer class="foot"><img src="/assets/img-farm-logo.webp" alt="Karin’s Farm" width="1000" height="658" class="foot-logo" loading="lazy" decoding="async"><p>Born at Karin’s Kids Academy and Karin’s Summer Camp, in the forest of Băneasa, Bucharest.</p><p class="foot-cta"><a class="hud-btn" href="/waitlist">Join the waitlist</a></p><nav class="legal" aria-label="Legal"><a href="/privacy" >Privacy policy</a><a href="/terms" >Terms of use</a><a href="/cookies" >Cookie policy</a><a href="mailto:lucacprediger@gmail.com" >Contact</a></nav>
   <nav class="legal ro" aria-label="Documente legale în limba română" lang="ro"><a href="/privacy-ro">Confidențialitate</a><a href="/terms-ro">Termeni</a><a href="/cookies-ro">Cookie-uri</a></nav><p class="small">Website run by Luca Prediger, Bucharest, Romania · lucacprediger@gmail.com</p><p class="small">© 2026 Karin’s Farm</p>
 </footer>
 
@@ -203,7 +211,7 @@ for kids</h1><p class="hero-lead">At night, the Wild Animals sneak into the farm
 
 </div><div class="sticky-cta" id="stickyCta">
   <span class="sc-copy"><b>Karin’s Farm</b><small>Mafia… for kids</small></span>
-  <a class="hud-btn" href="#join">Join the waitlist</a>
+  <a class="hud-btn" href="/waitlist">Join the waitlist</a>
 </div>
 <script type="application/json" id="kf-config">{
   "base": "/assets/",

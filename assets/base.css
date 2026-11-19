@@ -492,3 +492,69 @@ html.menu-open { overflow: hidden; }
 
 .site-main [id] { scroll-margin-top: calc(var(--head) - 2px); }
 @media (prefers-reduced-motion: no-preference) { html:has(body.tpl-index) { scroll-behavior: smooth; } }
+
+/* =====================================================================================
+   Review fixes, 19 Nov 2026: comfortable tap targets, a calmer mobile hero, clearer next steps
+   ===================================================================================== */
+/* the consent box was 22px wide (and stretched to 56px tall by the field styles) */
+.signup .consent input[type=checkbox] { flex: none; width: 24px; height: 24px; min-height: 0; margin: 0; padding: 0; }
+.consent { align-items: center; }
+.consent span { padding: 2px 0; }
+/* inline links get at least a 24px-tall tap area without changing how the text looks */
+.consent a, .faq a, .perks a, .wl a:not(.hud-btn), .ticks a { display: inline-block; min-height: 24px; line-height: 24px; }
+.legal a { display: inline-flex; align-items: center; min-height: 32px; padding: 4px 2px; }
+.foot-cta { margin: 6px 0 4px; }
+
+/* what you get, right under each form */
+.perks { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; text-align: left; font: 400 15px/1.4 var(--text); }
+.perks li { position: relative; padding-left: 26px; }
+.perks li::before { content: ""; position: absolute; left: 2px; top: 4px; width: 14px; height: 8px; border-left: 3px solid currentColor; border-bottom: 3px solid currentColor; transform: rotate(-45deg); color: #2f7d32; }
+.join .perks { width: min(560px, 100%); color: #f1dcc0; }
+.join .perks li::before { color: #9fe07a; }
+
+/* characters: a visible heading, not just a small label */
+.ch-h { margin-top: 8px; text-align: center; font: 400 clamp(30px, 4vw, 52px)/1 var(--display); text-transform: uppercase; position: relative; z-index: 2; }
+
+/* mobile hero: smaller artwork, more air between headline, picture and form */
+@media (max-width: 860px) {
+  .hero { row-gap: 0; }
+  .hero-h { margin-bottom: 6px; }
+  .hero-art { height: clamp(170px, 24svh, 230px); margin: 14px 0 6px; }
+  .hero-box img { height: clamp(170px, 24svh, 230px); }
+  .hero-fan img { width: min(110px, 24%); }
+  .hero-lead { margin-top: 12px; }
+  .hero-buy { margin-top: 20px; }
+}
+
+/* the waitlist page and the thank-you page */
+.tpl-page .site-main { padding-top: var(--head); }
+.wl { max-width: 1160px; margin: 0 auto; padding: clamp(28px, 5vw, 64px) var(--side) clamp(56px, 8vw, 96px); }
+.wl-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(24px, 5vw, 70px); align-items: center; }
+.wl h1 { font: 400 clamp(44px, 6vw, 84px)/.95 var(--display); text-transform: uppercase; }
+.wl .lead { margin: 16px 0 0; max-width: 36em; text-align: left; }
+.wl-card { margin-top: 26px; padding: clamp(18px, 2.4vw, 28px); background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.wl-card .signup { margin-top: 0; width: 100%; justify-content: flex-start; }
+.wl-label { flex: 1 1 100%; font: 600 13px/1 var(--tech); letter-spacing: .14em; text-transform: uppercase; }
+.wl-card .signup .hud-btn { background: var(--ink); color: #fff; }
+@media (hover: hover) { .wl-card .signup .hud-btn:hover { background: var(--accent); color: var(--ink); } }
+.wl-art { perspective: 1400px; }
+.wl-art img { width: min(380px, 100%); margin: 0 auto; transform: rotateY(var(--ry, -10deg)) rotateX(var(--rx, 2deg)); transition: transform .4s var(--ease); filter: drop-shadow(0 30px 40px rgba(80, 40, 0, .3)); }
+.wl-info { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 36px); margin-top: clamp(40px, 6vw, 70px); padding-top: clamp(28px, 4vw, 44px); border-top: 2px solid var(--ink); }
+.wl-info h2 { font: 400 clamp(26px, 2.6vw, 34px)/1 var(--display); text-transform: uppercase; margin-bottom: 12px; }
+.ticks, .nums { margin: 0; padding: 0; display: grid; gap: 8px; font-size: 17px; line-height: 1.45; }
+.ticks { list-style: none; }
+.ticks li { position: relative; padding-left: 26px; }
+.ticks li::before { content: ""; position: absolute; left: 2px; top: 6px; width: 14px; height: 8px; border-left: 3px solid #2f7d32; border-bottom: 3px solid #2f7d32; transform: rotate(-45deg); }
+.nums { padding-left: 22px; }
+.wl-contact { margin-top: 30px; font-size: 16px; }
+.wl-contact a, .wl-result a:not(.hud-btn) { color: inherit; text-underline-offset: 3px; }
+.wl-result { max-width: 760px; text-align: left; }
+.wl-result .lead { margin-top: 14px; }
+.wl-next { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+@media (max-width: 860px) {
+  .wl-grid { grid-template-columns: 1fr; }
+  .wl-art { order: -1; }
+  .wl-art img { width: min(190px, 50vw); }
+  .wl-info { grid-template-columns: 1fr; }
+}
+.tpl-page .foot-cta { display: none; }

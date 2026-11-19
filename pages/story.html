@@ -128,8 +128,8 @@
 <section class="game" id="game" aria-label="The game">
 <div id="shopify-section-template--kf__characters" class="shopify-section kf-chars-section">
 <div class="chars" id="characters" data-chars aria-labelledby="ch-h-template--kf__characters" style="--c: #c8402d;">
-  <h2 class="sr-only" id="ch-h-template--kf__characters">The characters</h2>
   <p class="ch-kicker">The characters</p>
+  <h2 class="ch-h" id="ch-h-template--kf__characters">Who’s on the farm?</h2>
   <div class="ch-stage">
     <p class="ch-name" aria-live="polite"></p>
     <figure class="ch-card"><img src="/assets/img-cards-fox.webp" width="723" height="1038" alt="Fox card"></figure>
@@ -178,13 +178,17 @@
   </div>
   <div class="j-copy"><p class="kicker">Waitlist</p>
       <h2 id="join-h-template--kf__buy">Be first on the farm</h2>
-      <p class="lead">Karin’s Farm isn’t on sale yet. Leave your email and we’ll tell you when it is. Nothing else.</p><form method="post" action="/contact#contact_form" id="template--kf__buy" class="signup" accept-charset="UTF-8"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
-  <input type="hidden" name="contact[tags]" value="waitlist,newsletter"><label class="sr-only" for="template--kf__buy-email">Email address</label>
-    <input id="template--kf__buy-email" name="contact[email]" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="template--kf__buy-msg">
+      <p class="lead">Karin’s Farm isn’t on sale yet. Leave your email and we’ll tell you when it is. Nothing else.</p><form method="post" action="/api/subscribe" id="template--kf__buy" class="signup" accept-charset="UTF-8"><label class="sr-only" for="template--kf__buy-email">Email address</label>
+    <input id="template--kf__buy-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="template--kf__buy-msg">
     <button class="hud-btn" type="submit">Join the waitlist</button>
     <div class="hp" aria-hidden="true"><label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
     <label class="consent"><input type="checkbox" name="consent" required> <span>I’m 16 or older and I agree that Karin’s Farm may email me when the game is available. I can unsubscribe at any time. Read the <a href="/privacy">privacy policy</a>.</span></label>
     <p class="form-msg" id="template--kf__buy-msg" role="status" aria-live="polite"></p></form>
+    <ul class="perks" aria-label="What you get by joining">
+      <li>One email when Karin’s Farm is out, with the price and the date</li>
+      <li>No spam, and we never share your email</li>
+      <li>Unsubscribe any time</li>
+    </ul>
   </div>
 </div>
 

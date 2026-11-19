@@ -126,6 +126,7 @@ document.querySelectorAll('form.signup').forEach(form => {
       if (!r.ok) throw new Error(r.status);
       say(T.joined || 'You’re on the list. We’ll email you when Karin’s Farm is available.', true);
       form.reset();
+      if (form.dataset.next) setTimeout(() => { location.href = form.dataset.next; }, 600);
     } catch (err) {
       say(T.failed || 'Something went wrong and your email wasn’t saved. Please try again in a moment.');
     } finally { btn.disabled = false; btn.textContent = label; }
